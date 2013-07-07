@@ -1,4 +1,11 @@
 Buythislook::Application.routes.draw do
+  resources :collections
+  
+  get '/auth/:provider/callback' => 'auth#callback'
+  get "auth/index"
+  get "auth/auth"
+  get "auth/logout"
+  get "auth/callback"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

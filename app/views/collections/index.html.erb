@@ -1,0 +1,61 @@
+ <ul class="breadcrumb">
+  <div class="sub-head">
+    <h2 style="color:#da4834; display: inline;">Top collections</h2>&nbsp;&nbsp;&nbsp;
+    <h4 style="display: inline;">  </h4>&nbsp;&nbsp;&nbsp;
+    <a role="button" data-toggle="modal" href="#newCollectionForm"> <img style="margin-top: -1px;"src="http://cdn1.iconfinder.com/data/icons/duesseldorf/16/plus.png"> Create a collection </a>
+    <% if @user %>
+      <div class="user-box">
+        <h5 style="display:inline;">Hi, <a href="#"><%= @user["name"] %> </a></h5>
+        <a style="color: #da4834;"href="/auth/logout" >  Logout</a>
+      </div>
+    <% end %>
+  </div>
+  </ul>
+
+<div class="container">
+    <% @collections.each do |collection| %>
+    <div class="bunch">
+      <% count = collection["items"].size %>
+      <% collection['items'].each do |item|%>
+        <% count -= 1 %>
+        <img class="c-image" alt="Image missing" height=230 width=230 src="<%=  item['mediumImageUrl'].gsub('128x128', '380x380')%>">
+        <% unless count <= 0 %>
+          <img src ="http://cdn1.iconfinder.com/data/icons/duesseldorf/32/plus.png">
+        <% end %>
+      <% end %>
+    </div>
+    <div class="title">
+       by <a href="#"><span style="color:#ff4b33;"><%= collection["created_by"]["name"]%></span></a>
+      <a style="color: white;"target="_blank" href="/collections/<%= collection["cid"] %>">  | @ <span class=""><%= number_to_currency(collection["items"].map{|item| item["itemPrice"] }.sum, unit: "&yen;&nbsp;", precision: 0) %></span> 
+       | View collection</a> 
+    </div>
+    <% end %>
+</div>
+
+
+<div id="newCollectionForm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="well">
+    <%= form_tag('/collections', :method => "post") do %>
+      <fieldset>
+        <legend> Add new collection </legend>
+        <%= hidden_field_tag("user_id" , @user["uid"]) %>
+        <label>Collection Name </label>
+        <%= text_field_tag('cname', "", :autofocus => "true", :autocomplete => "off") %>
+        <br>
+        This collection is for <br><br>
+        <input class="r-btn" type="radio" name="gender_flag" value="0"><span class="r-btn">Male </span></input>
+        <input class="r-btn" type="radio" name="gender_flag" value="1"><span class="r-btn">Female </span></input>
+        <input class="r-btn" type="radio" name="gender_flag" value="3"><span class="r-btn">Both </span></input><br><br>
+        <legend></legend>
+        <label>Add Items urls to collection </label>
+        <%= text_area('itemurls', "", :class => 'txt-area', :autofocus => "true", :autocomplete => "off") %>
+        <br>* separate urls with with newline
+        <br>
+        <br>
+        &nbsp;<%= submit_tag '+ Add' , :class => "btn btn-success", :style => "margin-top: 10px;" %>
+      </fieldset>
+    <% end %>
+  </div>
+</div>
+
+

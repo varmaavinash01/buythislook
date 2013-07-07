@@ -37,9 +37,16 @@ end
 
 # Use unicorn as the app server
 # gem 'unicorn'
+gem "unicorn-rails"
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem "omniauth", ">= 1.1.3"
+gem 'omniauth-facebook'
+gem 'redis'
+
+gem 'rest-client'

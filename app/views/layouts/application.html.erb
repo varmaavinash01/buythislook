@@ -3,12 +3,110 @@
 <head>
   <title>Buythislook</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "bootstrap.min" %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <script src="http://static.scripting.com/github/bootstrap2/js/jquery.js"></script>
+  <script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-transition.js"></script>
+  <script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-modal.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Prosto+One' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
+  <style>
+  .container {
+  #background-color: #f3f3f3;
+  height: 100%;
+  width: 90%;
+  display: block;
+  padding: 30px;
+  margin-top: 100px;
+}
+
+  .bunch {
+    background-color: #f3f3f3;
+    height: 100%;
+    width: 90%;
+    padding-top: 15px;
+    margin-bottom: 25px;
+  }
+  
+  .breadcrumb {
+  position: fixed;
+  width: 100%;
+  z-index: 3000;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+  margin-top:-100px;
+}
+
+.user-box {
+  margin-left: 50px;
+  font-family: 'Prosto One', cursive;
+  float: right;
+  display: inline;
+  margin-right: 10%;
+  margin-top: 10px;
+}
+
+
+.sub-head {
+  margin-left: 30px;
+  margin-bottom: 5px;
+  font-family: 'Prosto One', cursive;
+}
+
+a:hover {
+  text-decoration: none;
+}
+  
+.label {
+
+}
+
+.price {
+  color: #d44b34;
+  font-weight:900;
+}
+
+.r-btn {
+  margin: 5px;
+}
+
+.title {
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: 18px;
+    color: white;
+    height: 30px;
+    margin-top: -75px;
+    padding-bottom: 10px;
+    #padding-left: 10px;
+    #padding-right: 10px;
+    padding-top: 10px;
+    text-align: center;
+    position: relative;
+    width: 90%;
+    z-index: 1000;
+}
+
+.txt-area {
+  width: 70%;
+  height: 50%;
+}
+
+.c-image {
+  margin: 30px;
+}
+</style>
 </head>
 <body>
 
 <%= yield %>
+
+<script>
+$(document).ready(function() {
+    $(".modal").on('shown', function() {
+        $(this).find("[autofocus]:first").focus();
+    });
+});
+</script>
 
 </body>
 </html>

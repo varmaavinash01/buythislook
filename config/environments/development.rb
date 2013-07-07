@@ -1,4 +1,5 @@
 Buythislook::Application.configure do
+  ENV["REDISTOGO_URL"] = 'redis://127.0.0.1:5050'
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
